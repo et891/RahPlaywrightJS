@@ -26,9 +26,3 @@ jobs:
 
       - name: Run Playwright tests with Allure
         run: npx playwright test --reporter=line,allure-playwright
-
-      - name: Upload Allure results
-        uses: actions/upload-artifact@b4ffde0c52d364f94c82e6e3fdb0d760ed9aa9b7
-        with:
-          name: allure-results
-          path: ./allure-results
