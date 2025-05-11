@@ -10,7 +10,7 @@ test("Calendar validations", async ({ page }) => {
     "0"
   )}`;
 
-  await allure.step("Открываем сайт", async () => {
+  await allure.step("Открываем сайnт", async () => {
     await page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers");
   });
 
