@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+const { allure } = require("allure-playwright");
 
 test("Calendar validations", async ({ page }) => {
   const monthNumber = "6";
@@ -9,39 +10,39 @@ test("Calendar validations", async ({ page }) => {
     "0"
   )}`;
 
-  await test.step("Открываем сайт", async () => {
+  await allure.step("Открываем сайт", async () => {
     await page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers");
   });
 
-  await test.step("Открываем календарь", async () => {
+  await allure.step("Открываем календарь", async () => {
     await page.locator(".react-date-picker__inputGroup").click();
   });
 
-  await test.step("Переход к выбору года", async () => {
+  await allure.step("Переход к выбору года", async () => {
     await page.locator(".react-calendar__navigation__label").click();
     await page.locator(".react-calendar__navigation__label").click();
   });
 
-  await test.step(`Выбор года: ${year}`, async () => {
+  await allure.step(`Выбор года: ${year}`, async () => {
     await page.getByText(year).click();
   });
 
-  await test.step(`Выбор месяца: ${monthNumber}`, async () => {
+  await allure.step(`Выбор месяца: ${monthNumber}`, async () => {
     await page
       .locator(".react-calendar__year-view__months__month")
       .nth(Number(monthNumber) - 1)
       .click();
   });
 
-  await test.step(`Выбор дня: ${date}`, async () => {
+  await allure.step(`Выбор дня: ${date}`, async () => {
     await page.locator(`//abbr[text()='${date}']`).click();
   });
 
-  await test.step("Проверка выбранной даты", async () => {
-    const fullDateInput = page
+  await allure.step("Проверка даты", async () => {
+    const value = await page
       .locator(".react-date-picker__inputGroup input")
-      .first();
-    const actualValue = await fullDateInput.getAttribute("value");
-    expect(actualValue).toEqual(expectedDate);
+      .first()
+      .getAttribute("value");
+    expect(value).toEqual(expectedDate);
   });
 });
