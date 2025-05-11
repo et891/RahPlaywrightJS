@@ -19,7 +19,7 @@ jobs:
           node-version: "18"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
@@ -27,8 +27,8 @@ jobs:
       - name: Run Playwright tests with Allure
         run: npx playwright test --reporter=line,allure-playwright
 
-      #- name: Upload Allure results
-      #  uses: actions/upload-artifact@v2
-      #  with:
-      #    name: allure-results
-      #    path: ./allure-results
+      - name: Upload Allure results
+        uses: actions/upload-artifact@b4ffde0c52d364f94c82e6e3fdb0d760ed9aa9b7
+        with:
+          name: allure-results
+          path: ./allure-results
